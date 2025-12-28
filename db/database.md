@@ -1,12 +1,12 @@
 
-
-# extends supabase auth.users
 user_profile
 ---
 - id
 - first_name
 - last_name
 - created_at
+
+[user management](https://supabase.com/docs/guides/auth/managing-user-data?queryGroups=language&language=js)
 
 
 products
@@ -39,16 +39,16 @@ orders
 - note
 
 
-# pricing
+pricing
 - subtotal_cents
 - tax_cents
 - shipping_cents
 - total_cents
 
-# stripe integration - fill out after testing
+stripe integration - fill out after testing
 - stripe_*
 
-# shipping information
+shipping information
 - shippping_name
 - shippping_address_1
 - shippping_address_2
@@ -77,7 +77,7 @@ shipments
 - id
 - order_id
 
-# shippo integrations - fill out after testing
+shippo integrations - fill out after testing
 - shippo_*
 
 - carrier
