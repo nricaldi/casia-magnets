@@ -1,3 +1,5 @@
+'use client'
+
 import { createContext, useContext, useReducer, useMemo } from 'react';
 import type { Image as MagnetImage } from "../types/image";
 

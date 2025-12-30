@@ -4,7 +4,7 @@ import { Poppins } from "next/font/google";
 import Header from "./ui/header/header"
 import Footer from "./ui/footer/footer"
 
-import { CartProviderWrapper } from "./providers/cart-provider-wrapper";
+import { CartProvider } from "./providers/cart-provider";
 
 import "./globals.css";
 
@@ -28,10 +28,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.variable}`}>
-        <CartProviderWrapper>
+        <CartProvider>
           <Header />
           {children}
-        </CartProviderWrapper>
+        </CartProvider>
         <Footer />
       </body>
     </html>
