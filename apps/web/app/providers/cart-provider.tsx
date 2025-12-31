@@ -16,7 +16,7 @@ type CartContextValue = {
   quantityById: Map<number, number>
 };
 
-export const CartContext = createContext<CartContextValue>({ magnets: [], quantityById: new Map() });
+const CartContext = createContext<CartContextValue>({ magnets: [], quantityById: new Map() });
 export const CartDispatchContext = createContext<React.Dispatch<CartAction>>(() => {
   throw new Error('Dispatch must be used within CartProvider');
 });
@@ -42,14 +42,6 @@ export function CartProvider ({ children }: { children: React.ReactNode }) {
       </CartDispatchContext>
     </CartContext>
   );
-};
-
-export function useCart () {
-  return useContext(CartContext);
-};
-
-export function useCartDispatch () {
-  return useContext(CartDispatchContext);
 };
 
 function addMagnet (magnets: CartState, newMagnet: MagnetImage ): CartState {
@@ -92,4 +84,12 @@ function cartReducer (magnets: CartState, action: CartAction): CartState {
     case 'cleared': { return []; }
     default: { throw Error('Unknown action action type'); }
   };
+};
+
+export function useCart () {
+  return useContext(CartContext);
+};
+
+export function useCartDispatch () {
+  return useContext(CartDispatchContext);
 };
