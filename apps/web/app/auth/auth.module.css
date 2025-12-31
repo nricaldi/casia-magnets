@@ -1,0 +1,10 @@
+
+.authContainer {
+  background-color: var(--light-bg);
+  color: var(--light-bg-text);
+  display: grid;
+  height: 75vh;
+  place-items: center;
+  gap: 1rem;
+  width: 100%;
+}
