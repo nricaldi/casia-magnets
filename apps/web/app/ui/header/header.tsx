@@ -1,5 +1,3 @@
-"use client";
-
 import localFont from 'next/font/local'
 import styles from './header.module.css';
 import Link from 'next/link';

@@ -2,15 +2,19 @@
 
 import styles from './nav-bar.module.css';
 import CartIcon from './cart-icon';
+import { LuUserRound } from 'react-icons/lu';
+import { useUser } from '../../providers/user-provider';
 import Link from 'next/link';
 import React, { useEffect,useState, useRef } from 'react';
 import { motion } from 'motion/react';
 import { usePrefersReducedMotion } from '../motion/motion-prefs';
+import { createClient } from '../../../lib/supabase/client';
 
 export default function NavBar() {
 
   const [isActive, setIsActive] = useState(false);
   const navMenu = useRef<HTMLDivElement | null>(null);
+  const user = useUser();
 
   // Add/remove the outside-click listener whenever the menu is open/closed
   useEffect(() => {
@@ -41,6 +45,14 @@ export default function NavBar() {
   };
 
   const reduce = usePrefersReducedMotion();
+
+  const signOut = async () => {
+    const supabase = await createClient();
+    const { error } = await supabase.auth.signOut();
+
+    console.log({ error });
+  };
+
 
   return (
   <motion.nav
@@ -107,6 +119,19 @@ export default function NavBar() {
         <Link href="/#about">About</Link>
       </motion.span>
 
+
+      { user &&
+        <motion.span
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.4, delay: 0.28 }}
+          className={styles.navLink}
+          onClick={signOut}
+        >
+          <div><LuUserRound /></div>
+        </motion.span>
+      }
+
       <motion.span
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -114,8 +139,9 @@ export default function NavBar() {
         className={styles.navLink}
         onClick={disableMenu}
       >
-        <Link href="/"><CartIcon /></Link>
+        <CartIcon />
       </motion.span>
+
     </div>
   </motion.nav>
   );
