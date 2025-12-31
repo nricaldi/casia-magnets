@@ -38,7 +38,6 @@ export async function signInWithEmail(formData: FormData) {
   } else {
     console.log('success');
     console.log({ data });
-    console.log('url:', data.url);
 
     redirect('/gallery');
   }
