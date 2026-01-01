@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { motion } from "motion/react";
-import React, { useEffect, useRef, useState } from "react";
-import { usePrefersReducedMotion } from "./motion-prefs";
+import { motion } from 'motion/react';
+import React, { useEffect, useRef, useState } from 'react';
+import { usePrefersReducedMotion } from './motion-prefs';
 
 type RevealProps = {
   children: React.ReactNode;
@@ -20,12 +20,12 @@ export default function Reveal({
   children,
   once = true,
   threshold = 0.2,
-  rootMargin = "0px 0px -10% 0px",
+  rootMargin = '0px 0px -10% 0px',
   delay = 0,
   duration = 0.5,
   y = 6,
   as: As = motion.div,
-  className,
+  className
 }: RevealProps) {
   const ref = useRef<HTMLDivElement | null>(null);
   const [visible, setVisible] = useState(false);
@@ -56,7 +56,7 @@ export default function Reveal({
       ref={ref}
       className={className}
       initial={{ opacity: reduce ? 1 : 0, y: reduce ? 0 : y }}
-      animate={{ opacity: visible ? 1 : 0, y: visible ? 0 : (reduce ? 0 : y) }}
+      animate={{ opacity: visible ? 1 : 0, y: visible ? 0 : reduce ? 0 : y }}
       transition={{ duration: reduce ? 0 : duration, delay: reduce ? 0 : delay, ease: [0.22, 1, 0.36, 1] }}
     >
       {children}

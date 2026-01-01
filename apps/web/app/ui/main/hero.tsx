@@ -2,26 +2,17 @@ import '../../globals.css';
 import styles from './hero.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
-import { LuMoveRight } from "react-icons/lu";
+import { LuMoveRight } from 'react-icons/lu';
 import FadeIn from '../motion/fade-in';
 
 export default function Hero() {
   return (
     <section id="hero" className={styles.hero}>
-
       <div className={styles.heroContentContainer}>
-
         {/* Hero Content */}
         <div className={styles.heroContent}>
-
           <FadeIn delay={0.02} duration={0.6} y={0}>
-            <Image
-              className={styles.logo}
-              src="/logo.svg"
-              width={500}
-              height={500}
-              alt="Logo"
-            />
+            <Image className={styles.logo} src="/logo.svg" width={500} height={500} alt="Logo" />
           </FadeIn>
 
           <FadeIn delay={0.04}>
@@ -35,13 +26,16 @@ export default function Hero() {
           </FadeIn>
 
           <FadeIn delay={0.16}>
-            <Link href="/gallery" className={`button ${styles.ctaButton}`}>BUILD MY SET <LuMoveRight /></Link>
+            <Link href="/gallery" className={`button ${styles.ctaButton}`}>
+              BUILD MY SET <LuMoveRight />
+            </Link>
           </FadeIn>
-          <FadeIn delay={0.20}>
-            <p className={styles.subText}>* One order includes <strong>9</strong> magnets &bull; <strong>$25 + shipping</strong></p>
+          <FadeIn delay={0.2}>
+            <p className={styles.subText}>
+              * One order includes <strong>9</strong> magnets &bull; <strong>$25 + shipping</strong>
+            </p>
           </FadeIn>
         </div>
-
       </div>
     </section>
   );

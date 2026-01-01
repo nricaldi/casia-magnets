@@ -5,11 +5,9 @@ import { signUpNewUser } from '../actions';
 export default function SignUpPage() {
   return (
     <section className={styles.authContainer}>
-
       <h1>Sign Up</h1>
 
       <Form action={signUpNewUser}>
-
         <div>
           <label>Email:</label>
           <input name="email" type="email" />

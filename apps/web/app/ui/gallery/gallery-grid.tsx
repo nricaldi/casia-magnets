@@ -1,14 +1,12 @@
-"use client";
+'use client';
 
-import FadeIn from "../motion/fade-in";
-import Reveal from "../motion/reveal";
-import Magnet from "./magnet";
-import styles from "../main/gallery.module.css";
-import type { Image as MagnetImage} from "../../types/image";
+import FadeIn from '../motion/fade-in';
+import Reveal from '../motion/reveal';
+import Magnet from './magnet';
+import styles from '../main/gallery.module.css';
+import type { Image as MagnetImage } from '../../types/image';
 
-type GalleryGridProps = {
-  images: MagnetImage[]
-};
+type GalleryGridProps = { images: MagnetImage[] };
 
 export default function GalleryGrid({ images }: GalleryGridProps) {
   return (

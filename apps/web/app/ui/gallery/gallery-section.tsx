@@ -1,22 +1,19 @@
-"use client";
+'use client';
 
-import "../../globals.css";
-import Link from "next/link";
-import { LuMoveRight } from "react-icons/lu";
-import FadeIn from "../motion/fade-in";
-import GalleryGrid from "./gallery-grid";
-import styles from "../main/gallery.module.css";
-import type { Image as MagnetImage } from "../../types/image";
+import '../../globals.css';
+import Link from 'next/link';
+import { LuMoveRight } from 'react-icons/lu';
+import FadeIn from '../motion/fade-in';
+import GalleryGrid from './gallery-grid';
+import styles from '../main/gallery.module.css';
+import type { Image as MagnetImage } from '../../types/image';
 
-type GallerySectionProps = {
-  images: MagnetImage[]
-};
+type GallerySectionProps = { images: MagnetImage[] };
 
 export default function GallerySection({ images }: GallerySectionProps) {
   return (
     <section className={styles.gallery}>
       <div className={styles.galleryContainer}>
-
         <FadeIn delay={0.08}>
           <h1 className={styles.galleryTitle}>Featured</h1>
         </FadeIn>

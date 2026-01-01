@@ -7,8 +7,7 @@ import { User } from '@supabase/supabase-js';
 const UserContext = createContext<User | null>(null);
 const supabase = createClient();
 
-export function UserProvider ({ children, initialUser }: { children: React.ReactNode, initialUser: User | null }) {
-
+export function UserProvider({ children, initialUser }: { children: React.ReactNode; initialUser: User | null }) {
   const [user, setUser] = useState<User | null>(initialUser);
 
   useEffect(() => {
@@ -20,16 +19,12 @@ export function UserProvider ({ children, initialUser }: { children: React.React
 
     return () => {
       data.subscription.unsubscribe();
-    }
+    };
   }, [initialUser]);
 
-  return (
-    <UserContext value={user}>
-      {children}
-    </UserContext>
-  );
-};
+  return <UserContext value={user}>{children}</UserContext>;
+}
 
-export function useUser () {
+export function useUser() {
   return useContext(UserContext);
-};
+}

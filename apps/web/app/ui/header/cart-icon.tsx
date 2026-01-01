@@ -8,15 +8,14 @@ export default function CartIcon() {
 
   const totalMagnetCount = useMemo(() => {
     return Array.from(quantityById.values()).reduce((totalMagnetCount, quantity) => {
-      return totalMagnetCount += quantity;
+      return (totalMagnetCount += quantity);
     }, 0);
   }, [quantityById]);
-
 
   return (
     <div className={style.cartIconWrapper}>
       <LuShoppingCart />
-      { totalMagnetCount > 0 && <span className={style.cartQuantity}>{ totalMagnetCount }</span> }
+      {totalMagnetCount > 0 && <span className={style.cartQuantity}>{totalMagnetCount}</span>}
     </div>
   );
 }

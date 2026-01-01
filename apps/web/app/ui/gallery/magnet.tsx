@@ -1,39 +1,27 @@
-"use client"
+'use client';
 
-import styles from "./magnet.module.css";
-import Image from "next/image";
-import { useRef, useMemo } from "react";
-import { useCart, useCartDispatch } from "../../providers/cart-provider";
-import type { Image as MagnetImage } from "../../types/image";
-import MagnetStepper from "./magnet-stepper";
+import styles from './magnet.module.css';
+import Image from 'next/image';
+import { useRef, useMemo } from 'react';
+import { useCart, useCartDispatch } from '../../providers/cart-provider';
+import type { Image as MagnetImage } from '../../types/image';
+import MagnetStepper from './magnet-stepper';
 
-type MagnetProps = {
-  image: MagnetImage
-};
+type MagnetProps = { image: MagnetImage };
 
 export default function Magnet({ image }: MagnetProps) {
   const { quantityById } = useCart();
-  const quantity = useMemo(() => {
-    return quantityById.get(image.id);
-  }, [quantityById, image]) || 0;
+  const quantity =
+    useMemo(() => {
+      return quantityById.get(image.id);
+    }, [quantityById, image]) || 0;
 
   const dispatch = useCartDispatch();
   const onIncrement = () => {
-    dispatch({
-      type: 'added',
-      item: {
-        id: image.id,
-        url: image.url,
-        size: image.size,
-        alt: image.alt
-      }
-    });
+    dispatch({ type: 'added', item: { id: image.id, url: image.url, size: image.size, alt: image.alt } });
   };
   const onDecrement = () => {
-    dispatch({
-      type: 'removed',
-      id: image.id
-    });
+    dispatch({ type: 'removed', id: image.id });
   };
 
   // Tilt Animation
@@ -53,16 +41,10 @@ export default function Magnet({ image }: MagnetProps) {
       tiltCurrent.current.y = lerp(tiltCurrent.current.y, tiltTarget.current.y, k);
 
       const el = elRef.current!;
-      el.style.transform =
-        `rotateX(${tiltCurrent.current.x}deg) ` +
-        `rotateY(${tiltCurrent.current.y}deg) ` +
-        `scale(var(--scale, 1))`;
+      el.style.transform = `rotateX(${tiltCurrent.current.x}deg) ` + `rotateY(${tiltCurrent.current.y}deg) ` + `scale(var(--scale, 1))`;
 
       // stop when settled
-      if (
-        Math.abs(tiltCurrent.current.x - tiltTarget.current.x) < 0.01 &&
-        Math.abs(tiltCurrent.current.y - tiltTarget.current.y) < 0.01
-      ) {
+      if (Math.abs(tiltCurrent.current.x - tiltTarget.current.x) < 0.01 && Math.abs(tiltCurrent.current.y - tiltTarget.current.y) < 0.01) {
         rafRef.current = null;
         return;
       }
@@ -76,7 +58,7 @@ export default function Magnet({ image }: MagnetProps) {
     const rect = el.getBoundingClientRect();
     const cx = rect.left + rect.width / 2;
     const cy = rect.top + rect.height / 2;
-    const nx = (e.clientX - cx) / (rect.width / 2);  // -1..1
+    const nx = (e.clientX - cx) / (rect.width / 2); // -1..1
     const ny = (e.clientY - cy) / (rect.height / 2); // -1..1
 
     // target tilt (invert X for natural feel)
@@ -85,8 +67,8 @@ export default function Magnet({ image }: MagnetProps) {
     // update shine position (as %)
     const px = ((e.clientX - rect.left) / rect.width) * 100;
     const py = ((e.clientY - rect.top) / rect.height) * 100;
-    el.style.setProperty("--shine-x", `${px}%`);
-    el.style.setProperty("--shine-y", `${py}%`);
+    el.style.setProperty('--shine-x', `${px}%`);
+    el.style.setProperty('--shine-y', `${py}%`);
 
     startRAF();
   };
@@ -115,24 +97,18 @@ export default function Magnet({ image }: MagnetProps) {
         onPointerLeave={onPointerLeave}
         // set initial shine position out of view so it's invisible until hover
         // use CSS custom properties without any-casts
-        style={{ ["--shine-x" as string]: "-100%", ["--shine-y" as string]: "-100%" }}
+        style={{ ['--shine-x' as string]: '-100%', ['--shine-y' as string]: '-100%' }}
       >
-        <Image
-          className={styles.image}
-          src={image.url}
-          alt={image.alt}
-          width={image.size}
-          height={image.size}
-        />
+        <Image className={styles.image} src={image.url} alt={image.alt} width={image.size} height={image.size} />
       </div>
 
-      {
-        quantity === 0
-        ? <button className={styles.addButton} onClick={onIncrement}>Add to cart</button>
-        : <MagnetStepper onIncrement={onIncrement} onDecrement={onDecrement} quantity={quantity}/>
-      }
-
+      {quantity === 0 ? (
+        <button className={styles.addButton} onClick={onIncrement}>
+          Add to cart
+        </button>
+      ) : (
+        <MagnetStepper onIncrement={onIncrement} onDecrement={onDecrement} quantity={quantity} />
+      )}
     </div>
   );
 }
-

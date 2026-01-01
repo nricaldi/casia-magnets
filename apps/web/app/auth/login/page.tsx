@@ -6,11 +6,9 @@ import { signInWithEmail } from '../actions';
 export default function LoginPage() {
   return (
     <section className={styles.authContainer}>
-
       <h1>Log In</h1>
 
       <Form action={signInWithEmail}>
-
         <div>
           <label>Email:</label>
           <input name="email" type="email" />

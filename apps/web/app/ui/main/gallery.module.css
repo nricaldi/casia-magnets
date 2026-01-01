@@ -69,7 +69,7 @@
 }
 
 .viewGalleryButton:hover {
-  color: var(--dark-bg-dark)
+  color: var(--dark-bg-dark);
 }
 
 /* curves ;) */

@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
 
-import Header from './ui/header/header'
-import Footer from './ui/footer/footer'
+import Header from './ui/header/header';
+import Footer from './ui/footer/footer';
 
 import { CartProvider } from './providers/cart-provider';
-import { UserProvider } from './providers/user-provider'
+import { UserProvider } from './providers/user-provider';
 
 import { createClient } from '../lib/supabase/server';
 
@@ -18,19 +18,13 @@ const poppins = Poppins({
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900']
 });
 
-export const metadata: Metadata = {
-  title: 'Casia Magnets',
-  description: ''
-};
+export const metadata: Metadata = { title: 'Casia Magnets', description: '' };
 
-export default async function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-
+export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
+  const {
+    data: { user }
+  } = await supabase.auth.getUser();
 
   return (
     <html lang="en">

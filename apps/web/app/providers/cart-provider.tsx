@@ -1,27 +1,19 @@
-'use client'
+'use client';
 
 import { createContext, useContext, useReducer, useMemo } from 'react';
-import type { Image as MagnetImage } from "../types/image";
+import type { Image as MagnetImage } from '../types/image';
 
-type CartItem = MagnetImage & {
-  quantity: number
-};
+type CartItem = MagnetImage & { quantity: number };
 type CartState = CartItem[];
-type CartAction =
-  | { type: 'added'; item: MagnetImage }
-  | { type: 'removed'; id: number }
-  | { type: 'cleared' };
-type CartContextValue = {
-  magnets: CartState,
-  quantityById: Map<number, number>
-};
+type CartAction = { type: 'added'; item: MagnetImage } | { type: 'removed'; id: number } | { type: 'cleared' };
+type CartContextValue = { magnets: CartState; quantityById: Map<number, number> };
 
 const CartContext = createContext<CartContextValue>({ magnets: [], quantityById: new Map() });
 export const CartDispatchContext = createContext<React.Dispatch<CartAction>>(() => {
   throw new Error('Dispatch must be used within CartProvider');
 });
 
-export function CartProvider ({ children }: { children: React.ReactNode }) {
+export function CartProvider({ children }: { children: React.ReactNode }) {
   const [magnets, dispatch] = useReducer(cartReducer, []);
   const quantityById = useMemo(() => {
     return magnets.reduce((magnetMap, magnet) => {
@@ -30,66 +22,57 @@ export function CartProvider ({ children }: { children: React.ReactNode }) {
     }, new Map());
   }, [magnets]);
 
-  const cartValue = {
-    magnets,
-    quantityById
-  };
+  const cartValue = { magnets, quantityById };
 
   return (
     <CartContext value={cartValue}>
-      <CartDispatchContext value={dispatch}>
-        {children}
-      </CartDispatchContext>
+      <CartDispatchContext value={dispatch}>{children}</CartDispatchContext>
     </CartContext>
   );
-};
+}
 
-function addMagnet (magnets: CartState, newMagnet: MagnetImage ): CartState {
+function addMagnet(magnets: CartState, newMagnet: MagnetImage): CartState {
   const magnet = magnets.find(({ id }) => newMagnet.id === id);
   if (magnet) {
-    return [...magnets.filter(({ id }) => id !== newMagnet.id), {
-      ...magnet,
-      quantity: magnet.quantity + 1
-    }];
+    return [...magnets.filter(({ id }) => id !== newMagnet.id), { ...magnet, quantity: magnet.quantity + 1 }];
   }
 
-  return [...magnets, {
-    id: newMagnet.id,
-    url: newMagnet.url,
-    size: newMagnet.size,
-    alt: newMagnet.alt,
-    quantity: 1
-  }];
-};
+  return [...magnets, { id: newMagnet.id, url: newMagnet.url, size: newMagnet.size, alt: newMagnet.alt, quantity: 1 }];
+}
 
-function removeMagnet (magnets: CartState, magnetId: number) {
+function removeMagnet(magnets: CartState, magnetId: number) {
   const magnet = magnets.find(({ id }) => magnetId === id);
 
   if (!magnet) return magnets;
 
   if (magnet?.quantity > 1) {
-    return [...magnets.filter(({ id }) => magnetId !== id), {
-      ...magnet,
-      quantity: magnet.quantity - 1
-    }]
+    return [...magnets.filter(({ id }) => magnetId !== id), { ...magnet, quantity: magnet.quantity - 1 }];
   }
 
   return magnets.filter(({ id }) => magnetId !== id);
-};
+}
 
-function cartReducer (magnets: CartState, action: CartAction): CartState {
+function cartReducer(magnets: CartState, action: CartAction): CartState {
   switch (action.type) {
-    case 'added': { return addMagnet(magnets, action.item); }
-    case 'removed': { return removeMagnet(magnets, action.id); }
-    case 'cleared': { return []; }
-    default: { throw Error('Unknown action action type'); }
-  };
-};
+    case 'added': {
+      return addMagnet(magnets, action.item);
+    }
+    case 'removed': {
+      return removeMagnet(magnets, action.id);
+    }
+    case 'cleared': {
+      return [];
+    }
+    default: {
+      throw Error('Unknown action action type');
+    }
+  }
+}
 
-export function useCart () {
+export function useCart() {
   return useContext(CartContext);
-};
+}
 
-export function useCartDispatch () {
+export function useCartDispatch() {
   return useContext(CartDispatchContext);
-};
+}

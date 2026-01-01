@@ -1,17 +1,16 @@
-"use client";
+'use client';
 
 import styles from './nav-bar.module.css';
 import CartIcon from './cart-icon';
 import { LuUserRound } from 'react-icons/lu';
 import { useUser } from '../../providers/user-provider';
 import Link from 'next/link';
-import React, { useEffect,useState, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { motion } from 'motion/react';
 import { usePrefersReducedMotion } from '../motion/motion-prefs';
 import { createClient } from '../../../lib/supabase/client';
 
 export default function NavBar() {
-
   const [isActive, setIsActive] = useState(false);
   const navMenu = useRef<HTMLDivElement | null>(null);
   const user = useUser();
@@ -25,15 +24,13 @@ export default function NavBar() {
       if (!menu) return;
 
       // works with shadow DOM; fallback to contains for older envs
-      const inPath = typeof e.composedPath === "function"
-        ? e.composedPath().includes(menu)
-        : menu.contains(e.target as Node);
+      const inPath = typeof e.composedPath === 'function' ? e.composedPath().includes(menu) : menu.contains(e.target as Node);
 
       if (!inPath) setIsActive(false);
     };
 
-    document.addEventListener("click", onDocumentClick);
-    return () => document.removeEventListener("click", onDocumentClick);
+    document.addEventListener('click', onDocumentClick);
+    return () => document.removeEventListener('click', onDocumentClick);
   }, [isActive]);
 
   const disableMenu = () => {
@@ -53,96 +50,90 @@ export default function NavBar() {
     console.log({ error });
   };
 
-
   return (
-  <motion.nav
-    className={`${styles.navBar} ${isActive ? styles.open : ''}`}
-    initial={{ opacity: reduce ? 1 : 0 }}
-    animate={{ opacity: 1 }}
-    transition={{ duration: reduce ? 0 : 0.4, ease: [0.22, 1, 0.36, 1], delay: reduce ? 0 : 0.0 }}
-    ref={navMenu}
-  >
-
-    <div
-      className={styles.hamburger}
-      tabIndex={0}
-      onClick={handleMenuClick}
+    <motion.nav
+      className={`${styles.navBar} ${isActive ? styles.open : ''}`}
+      initial={{ opacity: reduce ? 1 : 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: reduce ? 0 : 0.4, ease: [0.22, 1, 0.36, 1], delay: reduce ? 0 : 0.0 }}
+      ref={navMenu}
     >
-      <motion.div
-        className={styles.hamburgerLine}
-        initial={{ opacity: reduce ? 1 : 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: reduce ? 0 : 0.24, ease: [0.22, 1, 0.36, 1], delay: reduce ? 0 : 0.06 }}
-      />
-      <motion.div
-        className={styles.hamburgerLine}
-        initial={{ opacity: reduce ? 1 : 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: reduce ? 0 : 0.24, ease: [0.22, 1, 0.36, 1], delay: reduce ? 0 : 0.10 }}
-      />
-      <motion.div
-        className={styles.hamburgerLine}
-        initial={{ opacity: reduce ? 1 : 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: reduce ? 0 : 0.24, ease: [0.22, 1, 0.36, 1], delay: reduce ? 0 : 0.14 }}
-      />
-    </div>
+      <div className={styles.hamburger} tabIndex={0} onClick={handleMenuClick}>
+        <motion.div
+          className={styles.hamburgerLine}
+          initial={{ opacity: reduce ? 1 : 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: reduce ? 0 : 0.24, ease: [0.22, 1, 0.36, 1], delay: reduce ? 0 : 0.06 }}
+        />
+        <motion.div
+          className={styles.hamburgerLine}
+          initial={{ opacity: reduce ? 1 : 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: reduce ? 0 : 0.24, ease: [0.22, 1, 0.36, 1], delay: reduce ? 0 : 0.1 }}
+        />
+        <motion.div
+          className={styles.hamburgerLine}
+          initial={{ opacity: reduce ? 1 : 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: reduce ? 0 : 0.24, ease: [0.22, 1, 0.36, 1], delay: reduce ? 0 : 0.14 }}
+        />
+      </div>
 
-    <div className={styles.menu}>
-      <motion.span
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.4, delay: 0.10 }}
-        className={styles.navLink}
-        onClick={disableMenu}
-      >
-        <Link href="/#hero">Home</Link>
-      </motion.span>
+      <div className={styles.menu}>
+        <motion.span
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.4, delay: 0.1 }}
+          className={styles.navLink}
+          onClick={disableMenu}
+        >
+          <Link href="/#hero">Home</Link>
+        </motion.span>
 
-      <motion.span
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.4, delay: 0.16 }}
-        className={styles.navLink}
-        onClick={disableMenu}
-      >
-        <Link href="/gallery">Gallery</Link>
-      </motion.span>
+        <motion.span
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.4, delay: 0.16 }}
+          className={styles.navLink}
+          onClick={disableMenu}
+        >
+          <Link href="/gallery">Gallery</Link>
+        </motion.span>
 
-      <motion.span
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.4, delay: 0.22 }}
-        className={styles.navLink}
-        onClick={disableMenu}
-      >
-        <Link href="/#about">About</Link>
-      </motion.span>
+        <motion.span
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.4, delay: 0.22 }}
+          className={styles.navLink}
+          onClick={disableMenu}
+        >
+          <Link href="/#about">About</Link>
+        </motion.span>
 
+        {user && (
+          <motion.span
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.4, delay: 0.28 }}
+            className={styles.navLink}
+            onClick={signOut}
+          >
+            <div>
+              <LuUserRound />
+            </div>
+          </motion.span>
+        )}
 
-      { user &&
         <motion.span
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.4, delay: 0.28 }}
           className={styles.navLink}
-          onClick={signOut}
+          onClick={disableMenu}
         >
-          <div><LuUserRound /></div>
+          <CartIcon />
         </motion.span>
-      }
-
-      <motion.span
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.4, delay: 0.28 }}
-        className={styles.navLink}
-        onClick={disableMenu}
-      >
-        <CartIcon />
-      </motion.span>
-
-    </div>
-  </motion.nav>
+      </div>
+    </motion.nav>
   );
 }
