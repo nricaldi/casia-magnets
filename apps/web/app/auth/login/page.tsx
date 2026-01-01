@@ -1,7 +1,7 @@
+import Form from 'next/form';
 
-import Form from "next/Form";
-import styles from "../auth.module.css";
-import { signInWithEmail } from "../actions";
+import styles from '../auth.module.css';
+import { signInWithEmail } from '../actions';
 
 export default function LoginPage() {
   return (

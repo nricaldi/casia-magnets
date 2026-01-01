@@ -1,7 +1,6 @@
-
-import Form from "next/Form";
-import styles from "../auth.module.css";
-import { signUpNewUser } from "../actions";
+import Form from 'next/form';
+import styles from '../auth.module.css';
+import { signUpNewUser } from '../actions';
 
 export default function SignUpPage() {
   return (
