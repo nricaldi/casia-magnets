@@ -5,23 +5,21 @@ import { createContext, useContext, useEffect, useState } from 'react';
 import { User } from '@supabase/supabase-js';
 
 const UserContext = createContext<User | null>(null);
+const supabase = createClient();
 
 export function UserProvider ({ children, initialUser }: { children: React.ReactNode, initialUser: User | null }) {
 
-  const supabase = createClient();
   const [user, setUser] = useState<User | null>(initialUser);
 
   useEffect(() => {
     setUser(initialUser);
 
-    const { data } = supabase.auth.onAuthStateChange((event, session) => {
-      if (event === 'SIGNED_OUT') {
-        setUser(null);
-      }
-    })
+    const { data } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+    });
 
     return () => {
-      data.subscription.unsubscribe()
+      data.subscription.unsubscribe();
     }
   }, [initialUser]);
 
