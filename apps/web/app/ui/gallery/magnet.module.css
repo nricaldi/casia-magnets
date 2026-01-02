@@ -106,25 +106,6 @@
   }
 }
 
-.addButton {
-  all: unset;
-  background-color: var(--red);
-  border-radius: 8px;
-  border: solid 1px var(--red);
-  color: var(--dark-bg-text);
-  cursor: pointer;
-  font-size: 0.875rem;
-  padding: 0.25rem 1rem;
-  transition:
-    background-color 250ms ease,
-    border-color 250ms ease;
-
-  &:hover {
-    background-color: var(--red-20);
-    border-color: var(--red-20);
-  }
-}
-
 .inputWrapper {
   display: flex;
   gap: 0.5rem;

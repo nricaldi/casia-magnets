@@ -6,6 +6,7 @@ import { useRef, useMemo } from 'react';
 import { useCart, useCartDispatch } from '../../providers/cart-provider';
 import type { Image as MagnetImage } from '../../types/image';
 import MagnetStepper from './magnet-stepper';
+import Button from '../common/button';
 
 type MagnetProps = { image: MagnetImage };
 
@@ -103,9 +104,9 @@ export default function Magnet({ image }: MagnetProps) {
       </div>
 
       {quantity === 0 ? (
-        <button className={styles.addButton} onClick={onIncrement}>
+        <Button variant="accent" size="sm" onClick={onIncrement}>
           Add to cart
-        </button>
+        </Button>
       ) : (
         <MagnetStepper onIncrement={onIncrement} onDecrement={onDecrement} quantity={quantity} />
       )}

@@ -1,19 +1,21 @@
 'use client';
 
 import styles from './magnet.module.css';
+import Button from '../common/button';
+import { LuMinus, LuPlus } from 'react-icons/lu';
 
 type MagnetStepperProps = { quantity: number; onIncrement: () => void; onDecrement: () => void };
 
 export default function MagnetStepper({ quantity, onIncrement, onDecrement }: MagnetStepperProps) {
   return (
     <div className={styles.inputWrapper}>
-      <button className={styles.stepperButton} onClick={onDecrement}>
-        -
-      </button>
+      <Button variant="dark" size="sm" onClick={onDecrement}>
+        <LuMinus />
+      </Button>
       <span className={styles.quantity}>{quantity}</span>
-      <button className={styles.stepperButton} onClick={onIncrement}>
-        +
-      </button>
+      <Button variant="dark" size="sm" onClick={onIncrement}>
+        <LuPlus />
+      </Button>
     </div>
   );
 }

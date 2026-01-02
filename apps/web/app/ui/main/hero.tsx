@@ -1,9 +1,9 @@
 import '../../globals.css';
 import styles from './hero.module.css';
-import Link from 'next/link';
 import Image from 'next/image';
 import { LuMoveRight } from 'react-icons/lu';
 import FadeIn from '../motion/fade-in';
+import Button from '../common/button';
 
 export default function Hero() {
   return (
@@ -16,20 +16,23 @@ export default function Hero() {
           </FadeIn>
 
           <FadeIn delay={0.04}>
-            <p className={styles.tagline}>{`It's the litle things that count`}</p>
+            <p className={styles.tagline}>{`It's the little things that count`}</p>
           </FadeIn>
+
           <FadeIn delay={0.08}>
             <h1 className={styles.title}>Small magnets. Big memories.</h1>
           </FadeIn>
+
           <FadeIn delay={0.12}>
             <p className={styles.subtitle}>Choose from our curated gallery or upload your own. Printed, laminated, and ready to display. </p>
           </FadeIn>
 
           <FadeIn delay={0.16}>
-            <Link href="/gallery" className={`button ${styles.ctaButton}`}>
-              BUILD MY SET <LuMoveRight />
-            </Link>
+            <Button as="link" href="/gallery" size="lg" variant="light" icon={<LuMoveRight />}>
+              BUILD MY SET
+            </Button>
           </FadeIn>
+
           <FadeIn delay={0.2}>
             <p className={styles.subText}>
               * One order includes <strong>9</strong> magnets &bull; <strong>$25 + shipping</strong>

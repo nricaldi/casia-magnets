@@ -1,12 +1,12 @@
 'use client';
 
 import '../../globals.css';
-import Link from 'next/link';
 import { LuMoveRight } from 'react-icons/lu';
 import FadeIn from '../motion/fade-in';
 import GalleryGrid from './gallery-grid';
 import styles from '../main/gallery.module.css';
 import type { Image as MagnetImage } from '../../types/image';
+import Button from '../common/button';
 
 type GallerySectionProps = { images: MagnetImage[] };
 
@@ -21,11 +21,13 @@ export default function GallerySection({ images }: GallerySectionProps) {
         <GalleryGrid images={images} />
       </div>
 
-      <FadeIn delay={0.08 + images.length * 0.04}>
-        <Link href="/gallery" className={`button ${styles.viewGalleryButton}`}>
-          VIEW FULL GALLERY <LuMoveRight />
-        </Link>
-      </FadeIn>
+      <div className={styles.viewGalleryButtonWrapper}>
+        <FadeIn delay={0.08 + images.length * 0.04}>
+          <Button as="link" href="/gallery" size="lg" variant="dark" icon={<LuMoveRight />}>
+            VIEW FULL GALLERY
+          </Button>
+        </FadeIn>
+      </div>
 
       <div className={styles.boxTop}></div>
       <div className={styles.curveTop}></div>

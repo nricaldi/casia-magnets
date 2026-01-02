@@ -64,15 +64,10 @@
   margin-bottom: 2.5rem;
 }
 
-.ctaButton {
-  background: var(--light-bg);
-  color: var(--light-bg-text);
-  margin-bottom: 1rem;
-}
-
 .subText {
   font-size: 0.75rem;
   color: var(--dark-bg-text-muted);
+  margin-top: 1rem;
 }
 
 @media (min-width: 768px) {
@@ -88,10 +83,6 @@
   .subtitle {
     font-size: 1rem;
     max-width: 450px;
-  }
-
-  .ctaButton {
-    margin-bottom: 1rem;
   }
 
   .subText {
