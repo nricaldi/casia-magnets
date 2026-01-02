@@ -1,0 +1,53 @@
+.button.variantLight {
+  --background-color: var(--light-bg);
+  --color: var(--light-bg-text);
+  --hover-background-color: transparent;
+  --hover-color: var(--dark-bg-text);
+}
+
+.button.variantDark {
+  --background-color: var(--dark-bg);
+  --color: var(--dark-bg-text);
+  --hover-background-color: transparent;
+  --hover-color: var(--light-bg-text);
+}
+
+.button.variantAccent {
+  --background-color: var(--red);
+  --color: var(--dark-bg-text);
+  --hover-background-color: var(--red-20);
+  --hover-color: var(--dark-bg-text);
+}
+
+.button {
+  align-items: center;
+  display: flex;
+  background-color: var(--background-color);
+  border-color: var(--background-color);
+  border-style: solid;
+  border-width: 1px;
+  color: var(--color);
+  cursor: pointer;
+  gap: 1rem;
+  text-decoration: none;
+  transition: color 0.2s ease, background-color 0.2s ease;
+  width: fit-content;
+
+  &:hover {
+    color: var(--hover-color);
+    background-color: var(--hover-background-color);
+  }
+}
+
+.button.sizeLg {
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.75rem 2rem;
+}
+
+.button.sizeSm {
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+}
