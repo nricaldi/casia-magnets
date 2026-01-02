@@ -1,9 +1,48 @@
 .authContainer {
-  background-color: var(--light-bg);
+  background-color: var(--light-bg-dark);
+  --curve-radius: calc(var(--header-border-radius) + 0.25rem);
+  border-radius: var(--curve-radius);
   color: var(--light-bg-text);
   display: grid;
-  height: 75vh;
+  height: 60vh;
+  margin-top: calc(var(--header-height) + 0.5rem);
   place-items: center;
-  gap: 1rem;
+  width: 100%;
+}
+
+.authFormWrapper {
+  background-color: var(--light-bg);
+  border: solid 1px var(--light-bg);
+  border-radius: 1.5rem;
+  box-shadow: var(--shadow-l);
+  padding: 1.5rem;
+  min-width: 375px;
+  max-width: 100%;
+}
+
+.authTitle {
+  margin-bottom: 2rem;
+}
+
+.authForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.authLabel {
+  align-items: center;
+  display: flex;
+  gap: 0.25rem;
+  margin-bottom: 0.5rem;
+  margin-left: 0.25rem;
+}
+
+.authInput {
+  background-color: var(--light-bg-light);
+  border: solid 1px var(--light-bg-dark);
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow-s);
+  padding: .75rem;
   width: 100%;
 }

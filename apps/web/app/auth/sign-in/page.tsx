@@ -3,16 +3,16 @@ import Form from 'next/form';
 import styles from '../auth.module.css';
 import Button from '../../ui/common/button';
 import { LuMail, LuLock } from "react-icons/lu";
-import { signUpNewUser } from '../actions';
+import { signInWithEmail } from '../actions';
 
-export default function SignUpPage() {
+export default function SignInPage() {
   return (
     <section className={styles.authContainer}>
 
       <div className={styles.authFormWrapper}>
-        <h1 className={styles.authTitle}>Sign Up</h1>
+        <h1 className={styles.authTitle}>Welcome Back</h1>
 
-        <Form action={signUpNewUser} className={styles.authForm}>
+        <Form action={signInWithEmail} className={styles.authForm}>
           <div>
             <label className={styles.authLabel}><LuMail /> Email:</label>
             <input className={styles.authInput} name="email" type="email" />
@@ -27,7 +27,7 @@ export default function SignUpPage() {
             size="lg"
             variant="dark"
           >
-            Sign Up
+            Sign In
           </Button>
         </Form>
       </div>
