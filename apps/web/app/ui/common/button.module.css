@@ -30,7 +30,9 @@
   cursor: pointer;
   gap: 1rem;
   text-decoration: none;
-  transition: color 0.2s ease, background-color 0.2s ease;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
   width: fit-content;
 
   &:hover {
