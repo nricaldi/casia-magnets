@@ -16,7 +16,7 @@ export default function Hero() {
           </FadeIn>
 
           <FadeIn delay={0.04}>
-            <p className={styles.tagline}>{`It's the little things that count`}</p>
+            <p className={styles.tagline}>It&apos;s the little things that count</p>
           </FadeIn>
 
           <FadeIn delay={0.08}>

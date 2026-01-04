@@ -19,6 +19,8 @@
   --red-40: oklch(0.85 0.2 40);
   --red-50: oklch(1 0.2 40);
 
+  --blue: oklch(0.5515 0.1317 242.47);
+
   --shadow-s: inset 0 1px 2px #ffffff30, /* top highlight */ 0 1px 2px #00000030, /* dark shadow */ 0 2px 4px #00000015; /* soft shadow */
 
   --shadow-m: inset 0 1px 2px #ffffff50, /* top highlight */ 0 2px 4px #00000030, /* dark shadow */ 0 4px 8px #00000015; /* soft shadow */

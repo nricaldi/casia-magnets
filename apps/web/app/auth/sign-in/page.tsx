@@ -3,6 +3,7 @@ import Form from 'next/form';
 import styles from '../auth.module.css';
 import Button from '../../ui/common/button';
 import { LuMail, LuLock } from "react-icons/lu";
+import Link from 'next/link';
 import { signInWithEmail } from '../actions';
 
 export default function SignInPage() {
@@ -23,13 +24,15 @@ export default function SignInPage() {
             <input className={styles.authInput} name="password" type="password" />
           </div>
 
-          <Button
-            size="lg"
-            variant="dark"
-          >
-            Sign In
-          </Button>
+          <Button size="lg" variant="dark">Sign In</Button>
         </Form>
+
+        <div className={styles.authOptions}>
+          <p className={styles.authOption}>
+            Don&apos;t have an account? <Link href="/auth/sign-up" className={styles.authOptionLink}>Sign up</Link>
+          </p>
+        </div>
+
       </div>
     </section>
   );

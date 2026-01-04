@@ -4,20 +4,27 @@
   border-radius: var(--curve-radius);
   color: var(--light-bg-text);
   display: grid;
-  height: 60vh;
   margin-top: calc(var(--header-height) + 0.5rem);
+  padding: 3rem 0;
   place-items: center;
   width: 100%;
+
+  @media(min-width: 480px) {
+    padding: 4rem 0;
+  }
 }
 
 .authFormWrapper {
-  background-color: var(--light-bg);
-  border: solid 1px var(--light-bg);
   border-radius: 1.5rem;
-  box-shadow: var(--shadow-l);
   padding: 1.5rem;
-  min-width: 375px;
-  max-width: 100%;
+  width: 100%;
+
+  @media(min-width: 480px) {
+    background-color: var(--light-bg);
+    border: solid 1px var(--light-bg);
+    box-shadow: var(--shadow-l);
+    width: 425px;
+  }
 }
 
 .authTitle {
@@ -44,5 +51,27 @@
   border-radius: 0.5rem;
   box-shadow: var(--shadow-s);
   padding: .75rem;
+  font-size: 1rem;
   width: 100%;
+}
+
+.authOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-top: 1.5rem;
+}
+
+.authOption {
+  color: var(--light-bg-text-muted);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.authOptionLink {
+  text-decoration: underline;
+  transition: color 0.2s ease;
+  &:hover {
+    color: var(--blue);
+  }
 }
