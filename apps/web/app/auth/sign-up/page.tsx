@@ -10,7 +10,7 @@ export default function SignUpPage() {
   return (
     <section className={styles.authContainer}>
 
-      <div className={styles.authFormWrapper}>
+      <div className={styles.authCard}>
         <h1 className={styles.authTitle}>Create Your Account</h1>
 
         <Form action={signUpNewUser} className={styles.authForm}>

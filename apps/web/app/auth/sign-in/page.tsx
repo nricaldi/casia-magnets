@@ -10,7 +10,7 @@ export default function SignInPage() {
   return (
     <section className={styles.authContainer}>
 
-      <div className={styles.authFormWrapper}>
+      <div className={styles.authCard}>
         <h1 className={styles.authTitle}>Welcome Back</h1>
 
         <Form action={signInWithEmail} className={styles.authForm}>
