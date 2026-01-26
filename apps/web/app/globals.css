@@ -11,21 +11,25 @@
   --light-bg-text: hsl(0 0% 5%);
   --light-bg-text-muted: hsl(0 0% 30%);
 
-  --red: oklch(0.3144 0.128 26.66);
-
   --red-10: oklch(0.1 0.2 40);
-  --red-20: oklch(0.35 0.2 40);
-  --red-30: oklch(0.6 0.2 40);
-  --red-40: oklch(0.85 0.2 40);
-  --red-50: oklch(1 0.2 40);
+  --red-30: oklch(0.3 0.2 40);
+  --red-50: oklch(0.5 0.2 40);
+  --red-70: oklch(0.7 0.1 20);
+  --red-90: oklch(0.9 0.05 20);
 
   --blue: oklch(0.5515 0.1317 242.47);
 
-  --shadow-s: inset 0 1px 2px #ffffff30, /* top highlight */ 0 1px 2px #00000030, /* dark shadow */ 0 2px 4px #00000015; /* soft shadow */
+  --shadow-s:
+    inset 0 1px 2px #ffffff30, /* top highlight */ 0 1px 2px #00000030,
+    /* dark shadow */ 0 2px 4px #00000015; /* soft shadow */
 
-  --shadow-m: inset 0 1px 2px #ffffff50, /* top highlight */ 0 2px 4px #00000030, /* dark shadow */ 0 4px 8px #00000015; /* soft shadow */
+  --shadow-m:
+    inset 0 1px 2px #ffffff50, /* top highlight */ 0 2px 4px #00000030,
+    /* dark shadow */ 0 4px 8px #00000015; /* soft shadow */
 
-  --shadow-l: inset 0 1px 2px #ffffff70, /* top highlight */ 0 4px 6px #00000030, /* dark shadow */ 0 6px 10px #00000015; /* soft shadow */
+  --shadow-l:
+    inset 0 1px 2px #ffffff70, /* top highlight */ 0 4px 6px #00000030,
+    /* dark shadow */ 0 6px 10px #00000015; /* soft shadow */
 
   --max-container-width: 1000px;
   --curve-radius: 75px;
