@@ -1,1 +1,8 @@
-{ "bracketSpacing": true, "printWidth": 150, "trailingComma": "none", "semi": true, "objectWrap": "collapse", "singleQuote": true }
+{
+  "bracketSpacing": true,
+  "printWidth": 100,
+  "trailingComma": "none",
+  "semi": true,
+  "objectWrap": "collapse",
+  "singleQuote": true
+}
