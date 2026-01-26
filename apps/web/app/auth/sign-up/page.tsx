@@ -1,40 +1,43 @@
+'use client';
+
 import Form from 'next/form';
+import Link from 'next/link';
+
+import { useActionState } from 'react';
 
 import styles from '../auth.module.css';
 import Button from '../../ui/common/button';
-import { LuMail, LuLock } from 'react-icons/lu';
-import Link from 'next/link';
-import { signUpNewUser } from '../actions';
+import InputGroup from '../../ui/common/input-group';
+import { LuMail, LuLock, LuCircleAlert } from 'react-icons/lu';
+import { signUpNewUser, type AuthState } from '../actions';
+
+const initialState: AuthState = { error: null };
 
 export default function SignUpPage() {
+  const [state, formAction, isPending] = useActionState(signUpNewUser, initialState);
+
   return (
     <section className={styles.authContainer}>
       <div className={styles.authCard}>
         <h1 className={styles.authTitle}>Create Your Account</h1>
 
-        <Form action={signUpNewUser} className={styles.authForm}>
-          <div>
-            <label className={styles.authLabel} htmlFor="email">
-              <LuMail /> Email:
-            </label>
-            <input className={styles.authInput} name="email" type="email" />
+        {state.error && (
+          <div className={styles.authErrorCard}>
+            <h4 className={styles.errorTitle}>
+              <LuCircleAlert /> Unable to Sign Up
+            </h4>
+            <p className={styles.errorMessage}>{state.error}</p>
           </div>
+        )}
 
-          <div>
-            <label className={styles.authLabel} htmlFor="password">
-              <LuLock /> Password:
-            </label>
-            <input className={styles.authInput} name="password" type="password" />
-          </div>
+        <Form action={formAction} className={styles.authForm}>
+          <InputGroup name="email" label="Email:" type="email" icon={<LuMail />} />
 
-          <div>
-            <label className={styles.authLabel} htmlFor="confirm">
-              <LuLock /> Confirm password:
-            </label>
-            <input className={styles.authInput} name="password" type="password" />
-          </div>
+          <InputGroup name="password" label="Password:" type="password" icon={<LuLock />} />
 
-          <Button size="lg" variant="dark">
+          <InputGroup name="confirm" label="Confirm Password:" type="password" icon={<LuLock />} />
+
+          <Button size="lg" variant="dark" disabled={isPending} isLoading={isPending}>
             Sign Up
           </Button>
         </Form>

@@ -1,33 +1,41 @@
+'use client';
+
 import Form from 'next/form';
+import Link from 'next/link';
+
+import { useActionState } from 'react';
 
 import styles from '../auth.module.css';
 import Button from '../../ui/common/button';
-import { LuMail, LuLock } from 'react-icons/lu';
-import Link from 'next/link';
-import { signInWithEmail } from '../actions';
+import InputGroup from '../../ui/common/input-group';
+import { LuMail, LuLock, LuCircleAlert } from 'react-icons/lu';
+import { signInWithEmail, type AuthState } from '../actions';
+
+const initialState: AuthState = { error: null };
 
 export default function SignInPage() {
+  const [state, formAction, isPending] = useActionState(signInWithEmail, initialState);
+
   return (
     <section className={styles.authContainer}>
       <div className={styles.authCard}>
         <h1 className={styles.authTitle}>Welcome Back</h1>
 
-        <Form action={signInWithEmail} className={styles.authForm}>
-          <div>
-            <label className={styles.authLabel}>
-              <LuMail /> Email:
-            </label>
-            <input className={styles.authInput} name="email" type="email" />
+        {state.error && (
+          <div className={styles.authErrorCard}>
+            <h4 className={styles.errorTitle}>
+              <LuCircleAlert /> Unable to Sign In
+            </h4>
+            <p className={styles.errorMessage}>{state.error}</p>
           </div>
+        )}
 
-          <div>
-            <label className={styles.authLabel}>
-              <LuLock /> Password:
-            </label>
-            <input className={styles.authInput} name="password" type="password" />
-          </div>
+        <Form action={formAction} className={styles.authForm}>
+          <InputGroup name="email" label="Email:" type="email" icon={<LuMail />} />
 
-          <Button size="lg" variant="dark">
+          <InputGroup name="password" label="Password:" type="password" icon={<LuLock />} />
+
+          <Button size="lg" variant="dark" disabled={isPending} isLoading={isPending}>
             Sign In
           </Button>
         </Form>
