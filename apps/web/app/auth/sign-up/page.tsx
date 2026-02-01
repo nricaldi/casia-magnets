@@ -3,7 +3,7 @@
 import Form from 'next/form';
 import Link from 'next/link';
 
-import { useActionState } from 'react';
+import { useActionState, useState } from 'react';
 
 import styles from '../auth.module.css';
 import Button from '../../ui/common/button';
@@ -15,6 +15,32 @@ const initialState: AuthState = { error: null };
 
 export default function SignUpPage() {
   const [state, formAction, isPending] = useActionState(signUpNewUser, initialState);
+  const [isFormDisabled, setIsFormDisabled] = useState(true);
+  const [formData, setFormData] = useState({ email: '', password: '', confirm: '' });
+
+  const validateForm = () => {
+    if (formData.email === '' || formData.password === '' || formData.confirm === '') {
+      setIsFormDisabled(true);
+      return;
+    }
+
+    if (password !== confirm) {
+      console.log('Please make sure your passwords match');
+      setIsFormDisabled(true);
+      return;
+    }
+
+    setIsFormDisabled(false);
+  };
+
+  const handleChange = (fieldName, value) => {
+    const newState = { ...formData, [fieldName]: value };
+
+    console.log(newState);
+
+    setFormData(newState);
+    validateForm();
+  };
 
   return (
     <section className={styles.authContainer}>
@@ -31,13 +57,39 @@ export default function SignUpPage() {
         )}
 
         <Form action={formAction} className={styles.authForm}>
-          <InputGroup name="email" label="Email:" type="email" icon={<LuMail />} />
+          <InputGroup
+            name="email"
+            label="Email:"
+            type="email"
+            icon={<LuMail />}
+            required={true}
+            onBlur={(e) => handleChange('email', e.target.value)}
+          />
 
-          <InputGroup name="password" label="Password:" type="password" icon={<LuLock />} />
+          <InputGroup
+            name="password"
+            label="Password:"
+            type="password"
+            icon={<LuLock />}
+            required={true}
+            onBlur={(e) => handleChange('password', e.target.value)}
+          />
 
-          <InputGroup name="confirm" label="Confirm Password:" type="password" icon={<LuLock />} />
+          <InputGroup
+            name="confirm"
+            label="Confirm Password:"
+            type="password"
+            icon={<LuLock />}
+            required={true}
+            onBlur={(e) => handleChange('confirm', e.target.value)}
+          />
 
-          <Button size="lg" variant="dark" disabled={isPending} isLoading={isPending}>
+          <Button
+            size="lg"
+            variant="dark"
+            disabled={isFormDisabled || isPending}
+            isLoading={isPending}
+          >
             Sign Up
           </Button>
         </Form>

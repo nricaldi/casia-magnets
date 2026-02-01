@@ -5,7 +5,7 @@
 }
 
 .cartQuantity {
-  background-color: var(--red-20);
+  background-color: var(--red-50);
   bottom: calc(90%);
   border-radius: 0.5rem;
   color: var(--dark-bg-text);
