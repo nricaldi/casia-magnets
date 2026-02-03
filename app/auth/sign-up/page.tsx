@@ -11,7 +11,7 @@ import InputGroup from '../../ui/common/input-group';
 import { LuMail, LuLock, LuCircleAlert } from 'react-icons/lu';
 import { signUpNewUser, type AuthState } from '../actions';
 
-const initialState: AuthState = { email: '', password: '', confirm: '', error: undefined };
+const initialState: AuthState = { error: undefined };
 
 export default function SignUpPage() {
   const [state, formAction, isPending] = useActionState(signUpNewUser, initialState);
@@ -42,9 +42,9 @@ export default function SignUpPage() {
             label="Email:"
             type="email"
             icon={<LuMail />}
-            required={true}
             value={formData.email}
             onChange={(e) => handleChange('email', e.target.value)}
+            required
           />
 
           <InputGroup
@@ -52,9 +52,9 @@ export default function SignUpPage() {
             label="Password:"
             type="password"
             icon={<LuLock />}
-            required={true}
             value={formData.password}
             onChange={(e) => handleChange('password', e.target.value)}
+            required
           />
 
           <InputGroup
@@ -62,17 +62,12 @@ export default function SignUpPage() {
             label="Confirm Password:"
             type="password"
             icon={<LuLock />}
-            required={true}
             value={formData.confirm}
             onChange={(e) => handleChange('confirm', e.target.value)}
+            required
           />
 
-          <Button
-            size="lg"
-            variant="dark"
-            disabled={isPending}
-            isLoading={isPending}
-          >
+          <Button size="lg" variant="dark" disabled={isPending} isLoading={isPending}>
             Sign Up
           </Button>
         </Form>
