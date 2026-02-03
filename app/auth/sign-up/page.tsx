@@ -11,35 +11,15 @@ import InputGroup from '../../ui/common/input-group';
 import { LuMail, LuLock, LuCircleAlert } from 'react-icons/lu';
 import { signUpNewUser, type AuthState } from '../actions';
 
-const initialState: AuthState = { error: null };
+const initialState: AuthState = { email: '', password: '', confirm: '', error: undefined };
 
 export default function SignUpPage() {
   const [state, formAction, isPending] = useActionState(signUpNewUser, initialState);
-  const [isFormDisabled, setIsFormDisabled] = useState(true);
   const [formData, setFormData] = useState({ email: '', password: '', confirm: '' });
 
-  const validateForm = () => {
-    if (formData.email === '' || formData.password === '' || formData.confirm === '') {
-      setIsFormDisabled(true);
-      return;
-    }
-
-    if (password !== confirm) {
-      console.log('Please make sure your passwords match');
-      setIsFormDisabled(true);
-      return;
-    }
-
-    setIsFormDisabled(false);
-  };
-
-  const handleChange = (fieldName, value) => {
+  const handleChange = (fieldName: string, value: string) => {
     const newState = { ...formData, [fieldName]: value };
-
-    console.log(newState);
-
     setFormData(newState);
-    validateForm();
   };
 
   return (
@@ -63,7 +43,8 @@ export default function SignUpPage() {
             type="email"
             icon={<LuMail />}
             required={true}
-            onBlur={(e) => handleChange('email', e.target.value)}
+            value={formData.email}
+            onChange={(e) => handleChange('email', e.target.value)}
           />
 
           <InputGroup
@@ -72,7 +53,8 @@ export default function SignUpPage() {
             type="password"
             icon={<LuLock />}
             required={true}
-            onBlur={(e) => handleChange('password', e.target.value)}
+            value={formData.password}
+            onChange={(e) => handleChange('password', e.target.value)}
           />
 
           <InputGroup
@@ -81,13 +63,14 @@ export default function SignUpPage() {
             type="password"
             icon={<LuLock />}
             required={true}
-            onBlur={(e) => handleChange('confirm', e.target.value)}
+            value={formData.confirm}
+            onChange={(e) => handleChange('confirm', e.target.value)}
           />
 
           <Button
             size="lg"
             variant="dark"
-            disabled={isFormDisabled || isPending}
+            disabled={isPending}
             isLoading={isPending}
           >
             Sign Up

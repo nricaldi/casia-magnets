@@ -4,24 +4,28 @@ import { headers } from 'next/headers';
 import { createClient } from '../../lib/supabase/server';
 import { redirect } from 'next/navigation';
 
-export type AuthState = { error: string | null };
+export type AuthState = { email: string; password: string; confirm?: string; error?: string };
 
 export async function signUpNewUser(state: AuthState, formData: FormData) {
-  const supabase = await createClient();
-  const origin = (await headers()).get('origin');
-
   const email = formData.get('email') as string;
   const password = formData.get('password') as string;
+  const confirm = formData.get('confirm') as string;
+
+  state = { email, password, confirm };
+
+  if (password !== confirm) {
+    state.error = 'Passwords do not match';
+    return { ...state };
+  }
+
+  const supabase = await createClient();
+  const origin = (await headers()).get('origin');
   const options = { emailRedirectTo: `${origin}/gallery` };
 
   const { data, error } = await supabase.auth.signUp({ email, password, options });
 
   if (error) {
-    console.error(error);
-    console.log('Message: ' + error.message);
-
     state.error = error.message;
-
     return { ...state };
   } else {
     console.log(data);

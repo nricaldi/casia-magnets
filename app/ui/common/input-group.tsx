@@ -1,26 +1,28 @@
 'use client';
 
-import type { FocusEventHandler, ReactNode } from 'react';
+import type { ChangeEvent, ReactNode } from 'react';
 import styles from './input-group.module.css';
 
 type InputGroupProps = {
-  name: string;
-  label: string;
-  type: string;
-  required?: boolean;
-  icon?: ReactNode;
-  onBlur?: FocusEventHandler<HTMLInputElement>;
   disabled?: boolean;
+  icon?: ReactNode;
+  label: string;
+  name: string;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  required?: boolean;
+  type: string;
+  value?: string;
 };
 
 export default function InputGroup({
   disabled = false,
   required = false,
-  name,
-  label,
-  type,
   icon,
-  onBlur
+  label,
+  name,
+  type,
+  value,
+  onChange
 }: InputGroupProps) {
   return (
     <div className={styles.inputGroup}>
@@ -32,11 +34,12 @@ export default function InputGroup({
         <span className={styles.icon}>{icon}</span>
         <input
           className={styles.input}
-          name={name}
-          type={type}
-          required={required}
           disabled={disabled}
-          onBlur={onBlur}
+          name={name}
+          required={required}
+          type={type}
+          value={value}
+          onChange={onChange}
         />
       </div>
     </div>

@@ -21,8 +21,8 @@ export default async function VerifyPage({ searchParams }: VerifyPageProps) {
 
         <div className={styles.authTextGroup}>
           <p className={styles.authText}>
-            Just click on the link in the email to complete your sign up. If you don&apos;t see it, you may need to <strong>check your spam</strong>{' '}
-            folder.
+            Just click on the link in the email to complete your sign up. If you don&apos;t see it,
+            you may need to <strong>check your spam</strong> folder.
           </p>
         </div>
 

@@ -20,6 +20,9 @@ export async function GET(request: NextRequest) {
     }
 
     console.log({ error });
+
+    // TODO - build out code expired page
+    // redirect('/auth/code-expired')
   }
 
   // redirect the user to an error page with some instructions
