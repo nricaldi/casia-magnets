@@ -24,7 +24,10 @@ export default function Hero() {
           </FadeIn>
 
           <FadeIn delay={0.12}>
-            <p className={styles.subtitle}>Choose from our curated gallery or upload your own. Printed, laminated, and ready to display. </p>
+            <p className={styles.subtitle}>
+              Choose from our curated gallery or upload your own. Printed, laminated, and ready to
+              display.{' '}
+            </p>
           </FadeIn>
 
           <FadeIn delay={0.16}>

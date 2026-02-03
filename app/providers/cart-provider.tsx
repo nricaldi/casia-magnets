@@ -5,7 +5,10 @@ import type { Image as MagnetImage } from '../types/image';
 
 type CartItem = MagnetImage & { quantity: number };
 type CartState = CartItem[];
-type CartAction = { type: 'added'; item: MagnetImage } | { type: 'removed'; id: number } | { type: 'cleared' };
+type CartAction =
+  | { type: 'added'; item: MagnetImage }
+  | { type: 'removed'; id: number }
+  | { type: 'cleared' };
 type CartContextValue = { magnets: CartState; quantityById: Map<number, number> };
 
 const CartContext = createContext<CartContextValue>({ magnets: [], quantityById: new Map() });
@@ -34,10 +37,16 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 function addMagnet(magnets: CartState, newMagnet: MagnetImage): CartState {
   const magnet = magnets.find(({ id }) => newMagnet.id === id);
   if (magnet) {
-    return [...magnets.filter(({ id }) => id !== newMagnet.id), { ...magnet, quantity: magnet.quantity + 1 }];
+    return [
+      ...magnets.filter(({ id }) => id !== newMagnet.id),
+      { ...magnet, quantity: magnet.quantity + 1 }
+    ];
   }
 
-  return [...magnets, { id: newMagnet.id, url: newMagnet.url, size: newMagnet.size, alt: newMagnet.alt, quantity: 1 }];
+  return [
+    ...magnets,
+    { id: newMagnet.id, url: newMagnet.url, size: newMagnet.size, alt: newMagnet.alt, quantity: 1 }
+  ];
 }
 
 function removeMagnet(magnets: CartState, magnetId: number) {
@@ -46,7 +55,10 @@ function removeMagnet(magnets: CartState, magnetId: number) {
   if (!magnet) return magnets;
 
   if (magnet?.quantity > 1) {
-    return [...magnets.filter(({ id }) => magnetId !== id), { ...magnet, quantity: magnet.quantity - 1 }];
+    return [
+      ...magnets.filter(({ id }) => magnetId !== id),
+      { ...magnet, quantity: magnet.quantity - 1 }
+    ];
   }
 
   return magnets.filter(({ id }) => magnetId !== id);

@@ -57,7 +57,11 @@ export default function Reveal({
       className={className}
       initial={{ opacity: reduce ? 1 : 0, y: reduce ? 0 : y }}
       animate={{ opacity: visible ? 1 : 0, y: visible ? 0 : reduce ? 0 : y }}
-      transition={{ duration: reduce ? 0 : duration, delay: reduce ? 0 : delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{
+        duration: reduce ? 0 : duration,
+        delay: reduce ? 0 : delay,
+        ease: [0.22, 1, 0.36, 1]
+      }}
     >
       {children}
     </As>

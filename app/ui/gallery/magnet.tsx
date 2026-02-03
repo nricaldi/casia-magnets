@@ -19,7 +19,10 @@ export default function Magnet({ image }: MagnetProps) {
 
   const dispatch = useCartDispatch();
   const onIncrement = () => {
-    dispatch({ type: 'added', item: { id: image.id, url: image.url, size: image.size, alt: image.alt } });
+    dispatch({
+      type: 'added',
+      item: { id: image.id, url: image.url, size: image.size, alt: image.alt }
+    });
   };
   const onDecrement = () => {
     dispatch({ type: 'removed', id: image.id });
@@ -42,10 +45,16 @@ export default function Magnet({ image }: MagnetProps) {
       tiltCurrent.current.y = lerp(tiltCurrent.current.y, tiltTarget.current.y, k);
 
       const el = elRef.current!;
-      el.style.transform = `rotateX(${tiltCurrent.current.x}deg) ` + `rotateY(${tiltCurrent.current.y}deg) ` + `scale(var(--scale, 1))`;
+      el.style.transform =
+        `rotateX(${tiltCurrent.current.x}deg) ` +
+        `rotateY(${tiltCurrent.current.y}deg) ` +
+        `scale(var(--scale, 1))`;
 
       // stop when settled
-      if (Math.abs(tiltCurrent.current.x - tiltTarget.current.x) < 0.01 && Math.abs(tiltCurrent.current.y - tiltTarget.current.y) < 0.01) {
+      if (
+        Math.abs(tiltCurrent.current.x - tiltTarget.current.x) < 0.01 &&
+        Math.abs(tiltCurrent.current.y - tiltTarget.current.y) < 0.01
+      ) {
         rafRef.current = null;
         return;
       }
@@ -100,7 +109,13 @@ export default function Magnet({ image }: MagnetProps) {
         // use CSS custom properties without any-casts
         style={{ ['--shine-x' as string]: '-100%', ['--shine-y' as string]: '-100%' }}
       >
-        <Image className={styles.image} src={image.url} alt={image.alt} width={image.size} height={image.size} />
+        <Image
+          className={styles.image}
+          src={image.url}
+          alt={image.alt}
+          width={image.size}
+          height={image.size}
+        />
       </div>
 
       {quantity === 0 ? (

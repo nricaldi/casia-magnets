@@ -7,7 +7,13 @@ import { User } from '@supabase/supabase-js';
 const UserContext = createContext<User | null>(null);
 const supabase = createClient();
 
-export function UserProvider({ children, initialUser }: { children: React.ReactNode; initialUser: User | null }) {
+export function UserProvider({
+  children,
+  initialUser
+}: {
+  children: React.ReactNode;
+  initialUser: User | null;
+}) {
   const [user, setUser] = useState<User | null>(initialUser);
 
   useEffect(() => {

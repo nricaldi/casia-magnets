@@ -50,12 +50,14 @@
   background:
     /* LEFT */
     linear-gradient(to right, rgba(0, 0, 0, 0.2), transparent 55%) left / 8% 100% no-repeat,
-    /* RIGHT (a touch stronger so it doesn't vanish on white) */ linear-gradient(to left, rgba(0, 0, 0, 0.28), transparent 55%) right / 8% 100%
+    /* RIGHT (a touch stronger so it doesn't vanish on white) */
+    linear-gradient(to left, rgba(0, 0, 0, 0.28), transparent 55%) right / 8% 100% no-repeat,
+    /* TOP (was highlight; darken slightly so it shows on bright skies) */
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.16), transparent 55%) top / 100% 8% no-repeat,
+    /* BOTTOM */ linear-gradient(to top, rgba(0, 0, 0, 0.3), transparent 55%) bottom / 100% 8%
       no-repeat,
-    /* TOP (was highlight; darken slightly so it shows on bright skies) */ linear-gradient(to bottom, rgba(0, 0, 0, 0.16), transparent 55%) top / 100%
-      8% no-repeat,
-    /* BOTTOM */ linear-gradient(to top, rgba(0, 0, 0, 0.3), transparent 55%) bottom / 100% 8% no-repeat,
-    /* tiny lip */ linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent 70%) bottom / 100% 5% no-repeat,
+    /* tiny lip */ linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent 70%) bottom / 100% 5%
+      no-repeat,
     /* global edge vignette to keep bright photos from bleeding into the page */
     radial-gradient(closest-side at 50% 50%, transparent 66%, rgba(0, 0, 0, 0.08) 100%);
   border-radius: var(--magnet-border-radius);

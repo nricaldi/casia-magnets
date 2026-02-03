@@ -1,6 +1,5 @@
+## user_profile
 
-user_profile
----
 - id
 - first_name
 - last_name
@@ -8,9 +7,8 @@ user_profile
 
 [user management](https://supabase.com/docs/guides/auth/managing-user-data?queryGroups=language&language=js)
 
+## products
 
-products
----
 - id
 - name
 - description
@@ -19,9 +17,8 @@ products
 - created_at
 - updated_at
 
+## design_assets
 
-design_assets
----
 - id
 - user_id
 - name
@@ -30,25 +27,26 @@ design_assets
 - created_at
 - archived_at
 
+## orders
 
-orders
----
 - id
 - user_id
 - email
 - note
 
-
 pricing
+
 - subtotal_cents
 - tax_cents
 - shipping_cents
 - total_cents
 
 stripe integration - fill out after testing
-- stripe_*
+
+- stripe\_\*
 
 shipping information
+
 - shippping_name
 - shippping_address_1
 - shippping_address_2
@@ -61,9 +59,8 @@ shipping information
 - created_at
 - updated_at
 
+## order_items
 
-order_items
----
 - id
 - product_id
 - order_id
@@ -71,14 +68,14 @@ order_items
 - quantity
 - unit_price_cents
 
+## shipments
 
-shipments
----
 - id
 - order_id
 
 shippo integrations - fill out after testing
-- shippo_*
+
+- shippo\_\*
 
 - carrier
 - service_level

@@ -24,7 +24,10 @@ export default function NavBar() {
       if (!menu) return;
 
       // works with shadow DOM; fallback to contains for older envs
-      const inPath = typeof e.composedPath === 'function' ? e.composedPath().includes(menu) : menu.contains(e.target as Node);
+      const inPath =
+        typeof e.composedPath === 'function'
+          ? e.composedPath().includes(menu)
+          : menu.contains(e.target as Node);
 
       if (!inPath) setIsActive(false);
     };
@@ -63,19 +66,31 @@ export default function NavBar() {
           className={styles.hamburgerLine}
           initial={{ opacity: reduce ? 1 : 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: reduce ? 0 : 0.24, ease: [0.22, 1, 0.36, 1], delay: reduce ? 0 : 0.06 }}
+          transition={{
+            duration: reduce ? 0 : 0.24,
+            ease: [0.22, 1, 0.36, 1],
+            delay: reduce ? 0 : 0.06
+          }}
         />
         <motion.div
           className={styles.hamburgerLine}
           initial={{ opacity: reduce ? 1 : 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: reduce ? 0 : 0.24, ease: [0.22, 1, 0.36, 1], delay: reduce ? 0 : 0.1 }}
+          transition={{
+            duration: reduce ? 0 : 0.24,
+            ease: [0.22, 1, 0.36, 1],
+            delay: reduce ? 0 : 0.1
+          }}
         />
         <motion.div
           className={styles.hamburgerLine}
           initial={{ opacity: reduce ? 1 : 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: reduce ? 0 : 0.24, ease: [0.22, 1, 0.36, 1], delay: reduce ? 0 : 0.14 }}
+          transition={{
+            duration: reduce ? 0 : 0.24,
+            ease: [0.22, 1, 0.36, 1],
+            delay: reduce ? 0 : 0.14
+          }}
         />
       </div>
 
